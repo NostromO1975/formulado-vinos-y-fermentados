@@ -13,50 +13,75 @@
     </header>
     
     <main>
+        <!-- COMIENZO DEL NUEVO CÓDIGO QUE DEBES PEGAR -->
         <section id="calculadora">
             <h2>Calculadora de Fermentación</h2>
-            <!-- Aquí irán los formularios -->
+            
             <div class="form-group">
-                <label for="fruta">Seleccione fruta/ingrediente principal:</label>
-                <select id="fruta" name="fruta">
-                    <option value="">--Seleccione--</option>
-                    <option value="arroz">Arroz cocido</option>
-                    <option value="azucar-blanca">Azúcar blanca</option>
-                    <option value="azucar-morena">Azúcar morena</option>
-                    <option value="ciruela">Ciruela</option>
-                    <option value="corozo-amarillo">Corozo amarillo</option>
-                    <option value="corozo-morado">Corozo morado</option>
-                    <option value="durazno">Durazno</option>
-                    <option value="golupa">Golupa</option>
-                    <option value="granadilla">Granadilla</option>
-                    <option value="guayaba">Guayaba</option>
-                    <option value="lulo">Lulo</option>
-                    <option value="mango">Mango</option>
-                    <option value="manzana">Manzana</option>
-                    <option value="maracuya">Maracuyá</option>
-                    <option value="miel">Miel</option>
-                    <option value="maiz">Maíz cocido</option>
-                    <option value="mora">Mora</option>
-                    <option value="mucilago">Mucílago de cacao</option>
-                    <option value="naranja">Naranja</option>
-                    <option value="mandarina">Mandarina</option>
-                    <option value="panela">Panela</option>
-                    <option value="uchuva">Uchuva</option>
-                    <option value="uva">Uva</option>
-                    <option value="otro">Otro (especificar)</option>
-                </select>
-                
-                <div id="otro-fruta-container" style="display: none;">
-                    <label for="otro-fruta">Nombre del ingrediente:</label>
-                    <input type="text" id="otro-fruta" name="otro-fruta">
-                    
-                    <label for="otro-azucar">Contenido de azúcar (g/100g):</label>
-                    <input type="number" id="otro-azucar" name="otro-azucar" step="0.1">
-                </div>
-                    <!-- Más opciones se agregarán luego -->
+                <label>Tipo de bebida:</label>
+                <select id="tipo-bebida" name="tipo-bebida">
+                    <option value="guarapo">Guarapo</option>
+                    <option value="chicha">Chicha</option>
+                    <option value="masato">Masato</option>
+                    <option value="vino">Vino de fruta</option>
+                    <option value="otro">Otro fermentado</option>
                 </select>
             </div>
+
+            <div class="ingredientes-container">
+                <h3>Ingredientes principales (hasta 4)</h3>
+                
+                <!-- Ingrediente 1 -->
+                <div class="ingrediente">
+                    <div class="form-group">
+                        <label>Ingrediente 1:</label>
+                        <select class="ingrediente-select" name="ingrediente1">
+                            <option value="">--Seleccione--</option>
+                            <option value="arroz">Arroz cocido</option>
+                            <option value="azucar-blanca">Azúcar blanca</option>
+                            <option value="azucar-morena">Azúcar morena</option>
+                            <option value="ciruela">Ciruela</option>
+                            <option value="corozo-amarillo">Corozo amarillo</option>
+                            <option value="corozo-morado">Corozo morado</option>
+                            <option value="durazno">Durazno</option>
+                            <option value="golupa">Golupa</option>
+                            <option value="granadilla">Granadilla</option>
+                            <option value="guayaba">Guayaba</option>
+                            <option value="lulo">Lulo</option>
+                            <option value="mango">Mango</option>
+                            <option value="manzana">Manzana</option>
+                            <option value="maracuya">Maracuyá</option>
+                            <option value="miel">Miel</option>
+                            <option value="maiz">Maíz cocido</option>
+                            <option value="mora">Mora</option>
+                            <option value="mucilago">Mucílago de cacao</option>
+                            <option value="naranja">Naranja</option>
+                            <option value="mandarina">Mandarina</option>
+                            <option value="panela">Panela</option>
+                            <option value="uchuva">Uchuva</option>
+                            <option value="uva">Uva</option>
+                            <option value="otro">Otro (especificar)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad (gramos):</label>
+                        <input type="number" class="cantidad" name="cantidad1" min="0" step="100" value="0">
+                    </div>
+                    <div class="otro-ingrediente-container" style="display: none;">
+                        <label>Nombre del ingrediente:</label>
+                        <input type="text" class="otro-ingrediente" name="otro-ingrediente1">
+                        
+                        <label>Contenido de azúcar (g/100g):</label>
+                        <input type="number" class="otro-azucar" name="otro-azucar1" step="0.1" min="0" max="100">
+                    </div>
+                </div>
+                <!-- Los ingredientes 2, 3 y 4 se añadirán con JavaScript -->
+            </div>
+
+            <button id="agregar-ingrediente">+ Añadir otro ingrediente</button>
+            <button id="calcular">Calcular fermentación</button>
         </section>
+        <!-- FIN DEL NUEVO CÓDIGO QUE DEBES PEGAR -->
         
         <section id="info-contacto">
             <h3>Gustavo Chivará</h3>
