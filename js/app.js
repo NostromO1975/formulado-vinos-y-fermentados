@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.ingredientes-container').appendChild(nuevoIngrediente);
     });
 
-    // Función para calcular la fermentación
+    // Función para calcular la fermentación - VERSIÓN CORREGIDA
     document.getElementById('calcular').addEventListener('click', function() {
         const tipoBebida = document.getElementById('tipo-bebida').value;
         const ingredientes = [];
@@ -82,15 +82,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Recoger datos de cada ingrediente
         for (let i = 1; i <= ingredientesActivos; i++) {
             const select = document.querySelector(`select[name="ingrediente${i}"]`);
-            const cantidad = parseFloat(document.querySelector(`input[name="cantidad${i}"]`).value) || 0;
+            const cantidadInput = document.querySelector(`input[name="cantidad${i}"]`);
+            const cantidad = parseFloat(cantidadInput ? cantidadInput.value : 0) || 0;
             
-            if (select.value && cantidad > 0) {
+            if (select && select.value && cantidad > 0) {
                 let azucar;
                 let nombre;
                 
                 if (select.value === 'otro') {
-                    nombre = document.querySelector(`input[name="otro-ingrediente${i}"]`).value;
-                    azucar = parseFloat(document.querySelector(`input[name="otro-azucar${i}"]`).value) / 100;
+                    const otroNombreInput = document.querySelector(`input[name="otro-ingrediente${i}"]`);
+                    const otroAzucarInput = document.querySelector(`input[name="otro-azucar${i}"]`);
+                    
+                    nombre = otroNombreInput ? otroNombreInput.value : 'Ingrediente personalizado';
+                    azucar = otroAzucarInput ? parseFloat(otroAzucarInput.value) / 100 : 0;
                 } else {
                     nombre = formatNombreFruta(select.value);
                     azucar = azucarPorFruta[select.value] / 100;
@@ -115,21 +119,76 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Calcular alcohol potencial (simplificado)
-        // 17 g/L de azúcar ≈ 1% alcohol
         const alcoholPotencial = (totalAzucar / 17).toFixed(1);
         
-        // Mostrar resultados (por ahora en consola)
-        console.log('Tipo de bebida:', tipoBebida);
-        console.log('Ingredientes:', ingredientes);
-        console.log('Azúcar total (g):', totalAzucar.toFixed(1));
-        console.log('Alcohol potencial (%):', alcoholPotencial);
+        // Mostrar resultados en la página
+        document.getElementById('result-tipo-bebida').textContent = formatNombreFruta(tipoBebida);
+        document.getElementById('result-alcohol').textContent = alcoholPotencial;
+        document.getElementById('result-azucar').textContent = totalAzucar.toFixed(1);
         
-        // Aquí luego implementaremos mostrar los resultados en la página
-        alert(`Cálculo completado. Alcohol potencial estimado: ${alcoholPotencial}%`);
+        // Mostrar fecha actual
+        const ahora = new Date();
+        document.getElementById('result-fecha').textContent = ahora.toLocaleDateString('es-CO', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        
+        // Listar ingredientes
+        const listaIngredientes = document.getElementById('result-ingredientes');
+        listaIngredientes.innerHTML = '';
+        ingredientes.forEach(ing => {
+            const li = document.createElement('li');
+            li.textContent = `${ing.nombre}: ${ing.cantidad}g (${ing.azucar.toFixed(1)}g azúcar)`;
+            listaIngredientes.appendChild(li);
+        });
+        
+        // Generar recomendaciones
+        const recomendaciones = generarRecomendaciones(tipoBebida, alcoholPotencial);
+        document.getElementById('result-recomendaciones').innerHTML = recomendaciones;
+        
+        // Mostrar sección de resultados
+        document.getElementById('resultados').style.display = 'block';
+        
+        // Scroll automático a los resultados
+        document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
     });
+
+    // Función para generar recomendaciones
+    function generarRecomendaciones(tipoBebida, alcohol) {
+        let recomendaciones = '';
+        
+        // Recomendaciones generales por tipo de bebida
+        switch(tipoBebida) {
+            case 'guarapo':
+                recomendaciones += `<p>El guarapo tradicional se fermenta entre 3-5 días. Revise diariamente el olor y sabor.</p>`;
+                break;
+            case 'chicha':
+                recomendaciones += `<p>La chicha requiere fermentación más larga (5-8 días). Mantenga en recipiente de barro si es posible.</p>`;
+                break;
+            case 'masato':
+                recomendaciones += `<p>El masato necesita 2-3 días de fermentación con la cáscara de piña para activar levaduras naturales.</p>`;
+                break;
+            default:
+                recomendaciones += `<p>Fermente a temperatura ambiente (20-25°C) por 4-7 días.</p>`;
+        }
+        
+        // Recomendaciones por nivel de alcohol
+        const alcoholNum = parseFloat(alcohol);
+        if (alcoholNum > 12) {
+            recomendaciones += `<p class="warning">¡Alto contenido alcohólico! Considere diluir con agua antes de fermentar.</p>`;
+        } else if (alcoholNum < 6) {
+            recomendaciones += `<p>Bajo contenido alcohólico. Puede añadir más azúcar o fermentar menos tiempo.</p>`;
+        }
+        
+        recomendaciones += `<p>Controle la fermentación: debe haber burbujas pero no olor avinagrado.</p>`;
+        
+        return recomendaciones;
+    }
 
     // Función auxiliar para formatear nombres de frutas
     function formatNombreFruta(key) {
+        if (!key) return '';
         return key.split('-').map(word => 
             word.charAt(0).toUpperCase() + word.slice(1)
         ).join(' ');
