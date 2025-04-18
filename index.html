@@ -20,8 +20,39 @@
                 <label for="fruta">Seleccione fruta/ingrediente principal:</label>
                 <select id="fruta" name="fruta">
                     <option value="">--Seleccione--</option>
+                    <option value="arroz">Arroz cocido</option>
+                    <option value="azucar-blanca">Azúcar blanca</option>
+                    <option value="azucar-morena">Azúcar morena</option>
+                    <option value="ciruela">Ciruela</option>
+                    <option value="corozo-amarillo">Corozo amarillo</option>
+                    <option value="corozo-morado">Corozo morado</option>
+                    <option value="durazno">Durazno</option>
+                    <option value="golupa">Golupa</option>
+                    <option value="granadilla">Granadilla</option>
+                    <option value="guayaba">Guayaba</option>
+                    <option value="lulo">Lulo</option>
+                    <option value="mango">Mango</option>
+                    <option value="manzana">Manzana</option>
+                    <option value="maracuya">Maracuyá</option>
+                    <option value="miel">Miel</option>
+                    <option value="maiz">Maíz cocido</option>
+                    <option value="mora">Mora</option>
+                    <option value="mucilago">Mucílago de cacao</option>
                     <option value="naranja">Naranja</option>
                     <option value="mandarina">Mandarina</option>
+                    <option value="panela">Panela</option>
+                    <option value="uchuva">Uchuva</option>
+                    <option value="uva">Uva</option>
+                    <option value="otro">Otro (especificar)</option>
+                </select>
+                
+                <div id="otro-fruta-container" style="display: none;">
+                    <label for="otro-fruta">Nombre del ingrediente:</label>
+                    <input type="text" id="otro-fruta" name="otro-fruta">
+                    
+                    <label for="otro-azucar">Contenido de azúcar (g/100g):</label>
+                    <input type="number" id="otro-azucar" name="otro-azucar" step="0.1">
+                </div>
                     <!-- Más opciones se agregarán luego -->
                 </select>
             </div>
