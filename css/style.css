@@ -39,59 +39,6 @@ select, input {
     background-color: #f5f5f5;
     border-radius: 5px;
 }
-.ingredientes-container {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-.ingrediente {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed #ccc;
-}
-
-.ingrediente:last-child {
-    border-bottom: none;
-}
-
-button {
-    background-color: #8B0000;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-right: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #A52A2A;
-}
-
-.otro-ingrediente-container {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
-
-/* Estilo para los campos de cantidad */
-input[type="number"] {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 120px;
-}
-
-/* Estilo para el texto de ejemplo (placeholder) */
-input::placeholder {
-    color: #999;
-    font-style: italic;
-    font-size: 0.9em;
-}
-/* SECCIÓN RESULTADOS */
 #resultados {
     margin-top: 30px;
     padding: 20px;
