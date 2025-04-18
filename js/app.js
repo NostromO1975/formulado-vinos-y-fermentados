@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="form-group">
                 <label>Cantidad (gramos):</label>
-                <input type="number" class="cantidad" name="cantidad${ingredientesActivos}" min="0" step="100" value="0">
+                <input type="number" class="cantidad" name="cantidad${ingredientesActivos}" min="0" step="1" placeholder="Ej: 500">
             </div>
             <div class="otro-ingrediente-container" style="display: none;">
                 <label>Nombre del ingrediente:</label>

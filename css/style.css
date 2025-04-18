@@ -76,3 +76,18 @@ button:hover {
     background-color: #f9f9f9;
     border-radius: 5px;
 }
+
+/* Estilo para los campos de cantidad */
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 120px;
+}
+
+/* Estilo para el texto de ejemplo (placeholder) */
+input::placeholder {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9em;
+}
